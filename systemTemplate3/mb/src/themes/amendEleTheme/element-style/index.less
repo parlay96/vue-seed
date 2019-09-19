@@ -1,0 +1,279 @@
+.card-box {
+  .el-input__icon {
+    line-height: @default-height !important;
+  }
+  // 高度样式修改
+  .el-input .is-disabled{
+    height: @default-height!important;
+    line-height: @default-height!important;
+  }
+  .el-input__inner{
+    height: @default-height!important;
+    line-height: @default-height!important;
+  }
+  .el-pagination .el-input__inner{
+    height: 28px!important;
+    line-height: 28px!important;
+  }
+  .el-date-editor .el-range-separator{
+    line-height: calc(@default-height - 8px)!important;
+    color: #606266!important;
+    width: 6%!important;
+  }
+  .el-date-editor .el-range__close-icon{
+    line-height: calc(@default-height - 8px)!important;
+  }
+  .el-date-editor .el-range__icon{
+    line-height: calc(@default-height - 8px)!important;
+  }
+  .el-dropdown{
+    height:@default-height!important;
+    line-height: @default-height!important;
+    cursor: pointer;
+  }
+  .el-button{
+    height:@default-height!important;
+    line-height: @default-height!important;
+    padding: 0 20px!important;
+  }
+  .el-input-group__append, .el-input-group__prepend{
+    background: @table-header-color!important;
+  }
+  //按钮固定定位样式
+  .fixed-button-box {
+    width: calc(100% - 30px);
+    background-color: #fff;
+    text-align: center;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    padding: 8px 0;
+    -webkit-box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+  }
+}
+//文本域框
+.el-textarea__inner{
+  height: 120px;
+}
+// 表格高度
+.lz-tabale-big-box{
+  .el-table th, .el-table td{
+    padding: 0!important;
+    height: 50px !important;
+    line-height: 50px !important;
+  }
+}
+// 表格内弹出框图片样式
+.classifyTableImgBox{
+  width: 170px;
+  margin:0 auto;
+  overflow: hidden;
+  img{
+    width: 100%;
+  }
+}
+// 表格内图片样式
+.picture-warp{width: 100%;height: 100%;padding: 5px 0;
+  img{display: block;width: 50px;height: 100%;margin-left: -10px;}
+}
+// 表单
+// 字体颜色修改
+.el-form-item__label,
+.el-input__inner,
+.el-textarea__inner,
+.el-radio__label{
+  color: @default-color !important;
+}
+// 边框颜色修改
+.el-input__inner,
+.el-textarea__inner,
+.el-radio__inner,
+.el-button--default{
+  border: 1px solid @input-border-color !important;
+  // 输入框等获取焦点的边框颜色
+  &:hover {
+    border-color: @dh-color !important;
+  }
+}
+// 复选框选中的边框颜色
+.el-checkbox__input.is-indeterminate .el-checkbox__inner, .el-checkbox__input.is-checked .el-checkbox__inner {
+  border-color: @dh-color !important;
+}
+
+// 高度样式修改
+.el-form-item__label{
+  height: @default-height!important;
+  line-height: @default-height!important;
+}
+.el-input .is-disabled{
+  height: @default-height!important;
+  line-height: @default-height!important;
+}
+.el-input__inner{
+  height: @default-height!important;
+  line-height: @default-height!important;
+}
+.el-button{
+  height:@default-height!important;
+  line-height: @default-height!important;
+  padding: 0 20px!important;
+}
+// 图标
+.el-input__icon {
+  line-height: @default-height !important;
+}
+// 日期图标
+.el-date-editor{
+  .el-icon-date{
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .el-icon-date:before {
+    content: "\e615" !important;
+  }
+}
+// 文本域禁止拖动
+textarea{
+  resize: none !important;
+}
+// 单选框
+.el-radio{
+  .el-radio__inner{
+    width: 20px;
+    height: 20px;
+  }
+  .el-radio__inner::after{
+    width: 10px;
+    height: 10px;
+  }
+  .el-radio__input.is-checked{
+    .el-radio__inner{
+      background: #fff;
+      border-color: @dh-color !important;
+    }
+    .el-radio__inner::after{
+      background: @dh-color !important;
+    }
+  }
+}
+// 下拉框选中时字体不加粗
+.el-select-dropdown__item.selected{
+  font-weight: normal !important;
+}
+// 标签
+.el-select{
+  .el-select__tags{
+    .el-tag{
+      background-color: @dh-color !important;
+      &.el-tag--info{
+        color: @whiteColor !important;
+        &.is-hit{
+          border-color: transparent !important;
+        }
+      }
+    }
+  }
+ .el-tag__close.el-icon-close{
+   background-color: @dh-color !important;
+   border: 1px solid @whiteColor;
+ }
+}
+// 消息提示弹窗
+.el-message-box__wrapper{
+  .el-message-box{
+    width: 460px;
+    padding-bottom: 18px;
+    // 头部
+    .el-message-box__header{
+      padding: 20px 0;
+      text-align: center;
+      border-bottom: 1px solid @hint-bordercolor;
+      .el-message-box__title{
+        font-size: @font-size16;
+        color: @default-color;
+      }
+    }
+    // 内容
+    .el-message-box__content{
+      padding: 10px 70px;
+      min-height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .el-message-box__status{
+        position: inherit;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+      }
+      .el-message-box__status.el-icon-warning {
+        color: @hint-iconcolor;
+        font-size: @font-size18 !important;
+      }
+      .el-message-box__status + .el-message-box__message {
+        padding-left: 8px;
+        padding-right: 0;
+      }
+    }
+    // 按钮
+    .el-message-box__btns {
+      padding: 5px 15px 0;
+      text-align: center;
+      .el-button--default.el-button--primary{
+        border-color: @dh-color !important;
+      }
+    }
+  }
+}
+
+.card-box {
+  // 上传组件
+  .el-upload--picture-card {
+    width: 120px !important;
+    line-height: 120px !important;
+    height: 120px !important;
+  }
+  .el-icon-plus {
+    color: @dh-color !important;
+  }
+  // 修改边框色(复选框)
+  .el-checkbox__inner {
+    border-color: @input-border-color !important;
+  }
+  // 修改搜索按钮样式
+  .el-input-group__append, .el-input-group__prepend {
+    border-color: @input-border-color !important;
+    padding: 0 10px !important;
+  }
+  // 修改ele弹框速度
+  .dialog-fade-enter-active {
+    animation: dialog-fade-in .2s;
+  }
+  .dialog-fade-leave-active {
+    animation: dialog-fade-out .2s;
+  }
+  @keyframes dialog-fade-in {
+    0% {
+      transform: translate3d(0, -10px, 0);
+      opacity: 0;
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
+  @keyframes dialog-fade-out {
+    0% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(0, -10px, 0);
+      opacity: 0;
+    }
+  }
+}

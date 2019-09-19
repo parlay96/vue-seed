@@ -1,0 +1,207 @@
+<template>
+  <div class="myTable">
+    <el-table
+      :data="tableData"
+      show-summary
+      :summary-method="getSummaries"
+      style="width: 100%">
+      <el-table-column
+        prop="date"
+        label="时间"
+        align="left"
+        width="180"/>
+      <el-table-column
+        prop="money"
+        align="center"
+        label="订单金额"/>
+      <el-table-column
+        prop="money"
+        align="center"
+        label="订单笔数"/>
+      <el-table-column
+        prop="money"
+        align="center"
+        label="退款金额"/>
+      <el-table-column
+        prop="money"
+        align="center"
+        label="退单笔数"/>
+      <el-table-column
+        align="center"
+        label="操作"
+        width="160">
+        <template slot-scope="scope">
+          <el-button @click="handleClick(scope.row)" type="text" size="small">查看明细</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
+</template>
+<script>
+  import Vue from 'vue'
+  import { Component } from 'vue-property-decorator'
+  import { namespace } from 'vuex-class'
+  const orderModule = namespace('orderModule')
+  @Component()
+  export default class orderStatisticTable extends Vue {
+    tableData = [
+      {
+        number: '20160502',
+        date: '2018-08-11 18:21',
+        name: '王小',
+        money: '20',
+        address: '上海市普陀区金沙江路 1518 弄',
+        shipments: '备货中/待发货',
+        shipmentsType: 1,
+        auditStatus: '待订单审核',
+        paymentStatus: '未付款',
+        type: '代下单'
+      },
+      {
+        number: '20160502',
+        name: '王虎',
+        money: '204',
+        address: '上海市普陀区金沙江路 1518 弄',
+        shipments: '已出库/已发货',
+        shipmentsType: 2,
+        auditStatus: '待订单审核',
+        paymentStatus: '未付款',
+        date: '2018-08-11 18:21',
+        type: '代下单'
+      },
+      {
+        number: '20160502',
+        name: '小虎',
+        money: '20',
+        address: '上海市普陀区金沙江路 1518 弄',
+        shipments: '备货中/待发货',
+        auditStatus: '待订单审核',
+        shipmentsType: 1,
+        paymentStatus: '未付款',
+        date: '2018-08-11 18:21',
+        type: '代下单'
+      },
+      {
+        number: '20160502',
+        name: '小o虎',
+        money: '720',
+        address: '上海市普陀区金沙江路 1518 弄',
+        shipments: '备货中/待发货',
+        auditStatus: '待订单审核',
+        shipmentsType: 1,
+        paymentStatus: '未付款',
+        date: '2018-08-11 18:21',
+        type: '代下单'
+      }]
+    auditTableData = [
+      {
+        date: '2019-03-27 18:21:05',
+        message: '订货单已确认发货'
+      },
+      {
+        date: '2019-03-27 18:21:05',
+        message: '订货单已通过出库审核'
+      }
+    ]
+    @orderModule.Mutation('changeTabName') changeTabName
+    handleClick (e) {
+      this.changeTabName({name: 'viewDetails', type: 2})
+    }
+    // 自定义合计方法
+    getSummaries (param) {
+      const { columns, data } = param
+      const sums = []
+      columns.forEach((column, index) => {
+        if (index === 0) {
+          sums[index] = '合计'
+          return
+        }
+        const values = data.map(item => Number(item[column.property]))
+        if (column.label === '订单金额' || column.label === '退款金额') {
+          if (!values.every(value => isNaN(value))) {
+            sums[index] = values.reduce((prev, curr) => {
+              const value = Number(curr)
+              if (!isNaN(value)) {
+                return prev + curr
+              } else {
+                return prev
+              }
+            }, 0)
+            sums[index] += ' 元'
+          } else {
+            sums[index] = ''
+          }
+        } else {
+          if (!values.every(value => isNaN(value))) {
+            sums[index] = values.reduce((prev, curr) => {
+              const value = Number(curr)
+              if (!isNaN(value)) {
+                return prev + curr
+              } else {
+                return prev
+              }
+            }, 0)
+            sums[index] += ' 笔'
+          } else {
+            sums[index] = ''
+          }
+        }
+      })
+
+      return sums
+    }
+  }
+</script>
+<style lang="less">
+  .myTable{
+    margin-top: 10px;
+    .el-table th{
+      background: #f7f7f7!important;//修改表头背景色
+    }
+  }
+  .name-wrapper{
+    text-align: center;
+  }
+  .auditTableData{
+    .el-table{
+      font-size: 12px;
+    }
+  }
+</style>
+<style scoped lang="less">
+  @import "../../../../../themes/orderModule/orderLess";
+  .myTable{
+    width: 100%;
+    overflow-x: scroll;
+    .numberType{
+      background: @bg-color;
+      color: #ffffff;
+      padding: 3px;
+    }
+    .orderDate{
+      font-size: 12px;
+      color: #999;
+      line-height: 20px;
+    }
+    .auditStatus{
+      color: #f60;
+    }
+    .orderAddress{
+      color: @bg-color;
+    }
+    .el-button--text{
+      color: @font-color;
+    }
+    .el-button--primary {
+      background-color: @bg-color;
+      border-color: @font-color;
+    }
+    .routerLink{
+      cursor: pointer;
+    }
+    .routerLink:hover{
+      color: @font-color;
+      border-bottom: 1px solid @font-color;
+    }
+  }
+</style>
